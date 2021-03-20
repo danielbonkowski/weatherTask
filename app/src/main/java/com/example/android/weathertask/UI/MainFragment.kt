@@ -1,14 +1,13 @@
 package com.example.android.weathertask.UI
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,7 +35,7 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
             inflater, R.layout.fragment_main, container, false
         )
 
-
+        setHasOptionsMenu(true)
 
         val jsonData = JsonData()
         val weatherList: Array<WeatherForecast> = Utils.decodeJsonToModel(jsonData.getJsonData())
@@ -57,5 +56,15 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
 
     override fun onClick(weatherForecast: WeatherForecast, view: View) {
         view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment())
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.overflow_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item, view!!.findNavController()) ||
+                super.onOptionsItemSelected(item)
     }
 }

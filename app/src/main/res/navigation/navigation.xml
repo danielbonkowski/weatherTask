@@ -19,4 +19,9 @@
         android:name="com.example.android.weathertask.UI.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.android.weathertask.UI.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

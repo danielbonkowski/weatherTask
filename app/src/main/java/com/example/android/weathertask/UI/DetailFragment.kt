@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.android.weathertask.R
+import com.example.android.weathertask.databinding.FragmentDetailBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -19,6 +21,10 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        val binding : FragmentDetailBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_detail, container, false
+        )
+
+        return binding.root
     }
 }
