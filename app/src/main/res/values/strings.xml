@@ -9,5 +9,7 @@
     <string name="format_temperature_fahrenheit">
         <xliff:g id="temp">%1.0f</xliff:g>\u00B0F
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -18,7 +18,7 @@ class MainWeatherAdapter (private val dataSet: Array<WeatherForecast>,
 
 
     interface MainWeatherAdapterOnClickHandler{
-        fun onClick(weatherForecast: WeatherForecast)
+        fun onClick(weatherForecast: WeatherForecast, view: View)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
@@ -49,7 +49,10 @@ class MainWeatherAdapter (private val dataSet: Array<WeatherForecast>,
         override fun onClick(v: View?) {
             val adapterPosition = adapterPosition
             val weatherForcast = dataSet[adapterPosition]
-            mMainForecastClickHandler.onClick(weatherForcast)
+            if(v != null){
+                mMainForecastClickHandler.onClick(weatherForcast, v)
+            }
+
         }
     }
 }
