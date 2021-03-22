@@ -53,27 +53,14 @@ class MainWeatherAdapter(private var dataSet: Array<WeatherForecast>,
                     Utils.formatTemperature(holderWeather.city.context, highestTemp)
                 val tempData : String = dataSet[position - 1].city + ": "
                 holderWeather.city.text = tempData
-                val weatherIcon = getWeatherIcon(dataSet[position - 1])
-                val weatherDescription = getWeatherDescription(dataSet[position - 1])
+                val weatherIcon = Utils.getWeatherIcon(dataSet[position - 1])
+                val weatherDescription = Utils.getWeatherDescription(dataSet[position - 1])
                 holderWeather.weatherIcon.setImageResource(weatherIcon)
                 holderWeather.weatherDescription.text = weatherDescription
                 holderWeather.maxTemp.text = formattedHighestTemp
             }
         }
 
-    }
-
-    private fun getWeatherDescription(weatherForecast: WeatherForecast): String {
-        return weatherForecast.weather.capitalize()
-    }
-
-    private fun getWeatherIcon(weatherForecast: WeatherForecast): Int {
-        return when(weatherForecast.weather){
-            "cloudy" -> R.drawable.ic_cloudy
-            "sunny" -> R.drawable.ic_sunny
-            "rainy" -> R.drawable.ic_rainy
-            else -> R.drawable.ic_snowy
-        }
     }
 
     override fun getItemViewType(position: Int): Int {

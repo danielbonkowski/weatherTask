@@ -24,5 +24,6 @@
     <string name="coldest_city_label">Coldest City</string>
     <string name="lowest_temp_label">Lowest Temperature</string>
     <string name="app_tab_layout">App tab layout</string>
+    <string name="share">Share</string>
 
 </resources>

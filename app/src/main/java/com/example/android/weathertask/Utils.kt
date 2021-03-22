@@ -4,6 +4,9 @@ import android.content.Context
 import com.example.android.weathertask.Data.WeatherForecast
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class Utils {
 
@@ -37,6 +40,16 @@ class Utils {
             return highestTemp
         }
 
+        fun findLowestTempForSingleCity(weatherForecast: WeatherForecast): Double{
+            var lowestTemp = Double.MAX_VALUE
+            for(hourlyTemp in weatherForecast.hourlyTemp){
+                if(hourlyTemp.temp < lowestTemp){
+                    lowestTemp = hourlyTemp.temp
+                }
+            }
+            return lowestTemp
+        }
+
         fun findCityWithLowestAverageDailyTemperature(weatherForecastArray: Array<WeatherForecast>): String{
             var city = ""
             var lowestAverageTemp = Double.MAX_VALUE
@@ -63,6 +76,35 @@ class Utils {
         fun formatTemperature(context: Context, temperature: Double): String{
             var celciusFormatResourceId = R.string.format_temperature_celsius
             return String.format(context.getString(celciusFormatResourceId), temperature)
+        }
+
+        fun getWeatherDescription(weatherForecast: WeatherForecast): String {
+            return weatherForecast.weather.capitalize()
+        }
+
+        fun getWeatherIcon(weatherForecast: WeatherForecast): Int {
+            return when(weatherForecast.weather){
+                "cloudy" -> R.drawable.ic_cloudy
+                "sunny" -> R.drawable.ic_sunny
+                "rainy" -> R.drawable.ic_rainy
+                else -> R.drawable.ic_snowy
+            }
+        }
+
+        fun getTimeDescription(time: Double): String{
+            return when(time){
+                0.0 -> "Midnight"
+                4.0 -> "Early morning"
+                8.0 -> "Morning"
+                12.0 -> "Noon"
+                16.0 -> "Afternoon"
+                else -> "Evening"
+            }
+        }
+
+        fun getCurrentDate() : String{
+            val simpleDateFormat = SimpleDateFormat("EEEE, MMMM d", Locale.ENGLISH)
+            return simpleDateFormat.format(Date())
         }
     }
 
