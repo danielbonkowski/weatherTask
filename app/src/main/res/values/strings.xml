@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">WeatherTask</string>
+    <string name="app_name">Weather</string>
 
 
     <string name="format_temperature_celsius">
@@ -21,5 +21,8 @@
     <string name="temperature_unit_imperial">imperial</string>
     <string name="key_temperature_units">key temperature units</string>
     <string name="temperature_units">Temperature Units</string>
+    <string name="coldest_city_label">Coldest City</string>
+    <string name="lowest_temp_label">Lowest Temperature</string>
+    <string name="app_tab_layout">App tab layout</string>
 
 </resources>

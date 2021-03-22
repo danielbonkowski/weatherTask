@@ -3,18 +3,21 @@ package com.example.android.weathertask.UI
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.weathertask.Data.JsonData
+import com.example.android.weathertask.Data.HourlyTemp
 import com.example.android.weathertask.Data.WeatherForecast
 import com.example.android.weathertask.R
-import com.example.android.weathertask.Utils
+import com.example.android.weathertask.ViewModel.MainFragmentViewModel
+import com.example.android.weathertask.ViewModel.SharedViewModel
 import com.example.android.weathertask.databinding.FragmentMainBinding
 
 
@@ -25,6 +28,12 @@ import com.example.android.weathertask.databinding.FragmentMainBinding
  */
 class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHandler {
 
+    private val mainViewModel: MainFragmentViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private lateinit var weatherList : Array<WeatherForecast>
+    private val emptyDataSet = Array<WeatherForecast>(0)
+        { WeatherForecast("", "", List<HourlyTemp>(0)
+        { HourlyTemp(0.0, 0.0) }) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,15 +46,18 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
 
         setHasOptionsMenu(true)
 
-        val jsonData = JsonData()
-        val weatherList: Array<WeatherForecast> = Utils.decodeJsonToModel(jsonData.getJsonData())
 
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false);
-        val viewAdapter = MainWeatherAdapter(weatherList, this)
+        val viewAdapter = MainWeatherAdapter( emptyDataSet, this)
         val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
 
 
-        binding.weatherRecyclerView.apply {
+        mainViewModel.cities.observe(viewLifecycleOwner, Observer { cities ->
+            weatherList = cities
+            viewAdapter.setData(weatherList)
+        })
+
+        binding.weatherMainRecyclerView.apply {
             layoutManager = linearLayoutManager
             adapter = viewAdapter
             addItemDecoration(dividerItemDecoration)
@@ -55,6 +67,7 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
     }
 
     override fun onClick(weatherForecast: WeatherForecast, view: View) {
+        sharedViewModel.selectCity(weatherForecast)
         view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment())
     }
 
@@ -66,5 +79,10 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(item, view!!.findNavController()) ||
                 super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mainViewModel.cancelJobs()
     }
 }

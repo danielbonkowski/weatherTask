@@ -7,7 +7,7 @@
         android:defaultValue="@string/temperature_unit_metric"
         android:entries="@array/temperature_units_names"
         android:entryValues="@array/temperature_units_values"
-        android:summary="@string/temperature_units"
+        android:summary="@string/temperature_unit_label_metric"
         />
 </androidx.preference.PreferenceScreen>
 
