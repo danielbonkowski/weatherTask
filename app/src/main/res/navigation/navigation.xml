@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -23,9 +25,5 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.android.weathertask.UI.SettingsFragment"
         android:label="Settings"
-        tools:layout="@layout/fragment_settings">
-        <action
-            android:id="@+id/action_settingsFragment_to_detailFragment2"
-            app:destination="@id/detailFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_settings"/>
 </navigation>

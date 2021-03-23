@@ -47,7 +47,7 @@ class ExtraWeatherAdapter (private var dataSet: WeatherForecast)
 
         when(getItemViewType(position)){
             VIEW_TYPE_MAIN -> {
-                holder.todayDate.text = Utils.getCurrentDate()
+                holder.todayDate.text = dataSet.city
 
                 val weatherIcon = Utils.getWeatherIcon(dataSet)
                 holder.weatherIcon.setImageResource(weatherIcon)
