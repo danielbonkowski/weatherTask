@@ -25,5 +25,7 @@
     <string name="lowest_temp_label">Lowest Temperature</string>
     <string name="app_tab_layout">App tab layout</string>
     <string name="share">Share</string>
+    <string name="weather_icon">Weather icon</string>
+    <string name="detail_title">Details</string>
 
 </resources>

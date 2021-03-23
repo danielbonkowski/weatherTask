@@ -55,6 +55,13 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
         mainViewModel.cities.observe(viewLifecycleOwner, Observer { cities ->
             weatherList = cities
             viewAdapter.setData(weatherList)
+            if(weatherList.isEmpty()){
+                binding.emptyView.visibility = View.VISIBLE
+                binding.weatherMainRecyclerView.visibility = View.GONE
+            }else{
+                binding.emptyView.visibility = View.GONE
+                binding.weatherMainRecyclerView.visibility = View.VISIBLE
+            }
         })
 
         binding.weatherMainRecyclerView.apply {

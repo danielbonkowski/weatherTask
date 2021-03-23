@@ -11,6 +11,18 @@
         <item name="android:textColorHint">@android:color/black</item>
     </style>
 
+
+    <style name="ActionBar.Solid.Weather.NoTitle" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="displayOptions">useLogo|showHome</item>
+        <item name="logo">@drawable/ic_logo_text</item>
+    </style>
+
+    <style name="AppTheme.Forecast" parent="@style/AppTheme">
+        <item name="actionBarStyle">@style/ActionBar.Solid.Weather.NoTitle</item>
+    </style>
+
+
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
