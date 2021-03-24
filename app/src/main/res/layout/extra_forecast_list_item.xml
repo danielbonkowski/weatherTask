@@ -7,19 +7,14 @@
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizontal_middle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        style="@style/vertical_guideline"
         app:layout_constraintGuide_percent="0.5"
         tools:layout_editor_absoluteX="192dp"
         tools:layout_editor_absoluteY="0dp"/>
 
     <TextView
         android:id="@+id/detail_extra_hour_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        style="@style/extra_detail_text_view_list_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/horizontal_middle"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,9 +23,8 @@
 
     <TextView
         android:id="@+id/detail_extra_temp_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        style="@style/extra_detail_text_view_list_item"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/horizontal_middle"
         app:layout_constraintTop_toTopOf="parent"

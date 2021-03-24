@@ -1,49 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:paddingBottom="16dp">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizontal_middle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        style="@style/vertical_guideline"
         app:layout_constraintGuide_percent="0.5"
         tools:layout_editor_absoluteX="192dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <TextView
-        android:id="@+id/detail_today_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
+        android:id="@+id/detail_city_text_view"
+        style="@style/extra_detail_city_text_view_main_list_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Sunday, March 28" />
+        tools:text="New York" />
 
     <ImageView
         android:id="@+id/detail_weather_icon"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="8dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        tools:src="@drawable/ic_rainy"
+        style="@style/extra_detail_weather_icon_main_list_item"
         app:layout_constraintEnd_toStartOf="@+id/horizontal_middle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detail_today_text_view"
-        android:contentDescription="@string/weather_icon" />
+        app:layout_constraintTop_toBottomOf="@id/detail_city_text_view"
+        tools:src="@drawable/ic_rainy"/>
 
     <TextView
         android:id="@+id/detail_weather_description_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
+        style="@style/extra_detail_weather_description_text_view_main_list_item"
         app:layout_constraintEnd_toEndOf="@+id/detail_weather_icon"
         app:layout_constraintStart_toStartOf="@+id/detail_weather_icon"
         app:layout_constraintTop_toBottomOf="@+id/detail_weather_icon"
@@ -51,20 +39,15 @@
 
     <TextView
         android:id="@+id/detail_highest_temp_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="60sp"
+        style="@style/extra_detail_highest_temp_text_view_main_list_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/horizontal_middle"
-        app:layout_constraintTop_toBottomOf="@id/detail_today_text_view"
+        app:layout_constraintTop_toBottomOf="@id/detail_city_text_view"
         tools:text="19" />
 
     <TextView
         android:id="@+id/detail_lowest_temp_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="34sp"
+        style="@style/extra_detail_lowest_temp_text_view_main_list_item"
         app:layout_constraintBaseline_toBaselineOf="@+id/detail_weather_description_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/horizontal_middle"

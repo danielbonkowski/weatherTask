@@ -17,7 +17,7 @@ class ExtraWeatherAdapter (private var dataSet: WeatherForecast)
     private val VIEW_TYPE_LIST : Int = 1
 
     inner class ExtraWeatherViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-        val todayDate = itemView.findViewById<TextView>(R.id.detail_today_text_view)
+        val todayDate = itemView.findViewById<TextView>(R.id.detail_city_text_view)
         val hour = itemView.findViewById<TextView>(R.id.detail_extra_hour_text_view)
         val temperature = itemView.findViewById<TextView>(R.id.detail_extra_temp_text_view)
         val weatherIcon = itemView.findViewById<ImageView>(R.id.detail_weather_icon)

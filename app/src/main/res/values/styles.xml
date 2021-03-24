@@ -1,44 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorSurface">#fff</item>
-        <item name="android:editTextColor">@android:color/black</item>
-        <item name="android:textColorHint">@android:color/black</item>
-    </style>
-
-
-    <style name="ActionBar.Solid.Weather.NoTitle" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="displayOptions">useLogo|showHome</item>
-        <item name="logo">@drawable/ic_logo_text</item>
-    </style>
-
-    <style name="AppTheme.Forecast" parent="@style/AppTheme">
-        <item name="actionBarStyle">@style/ActionBar.Solid.Weather.NoTitle</item>
-    </style>
-
-
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
-
-    <style name="pageHeadline" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+    // cities list item styles
+    <style name="cities_forecast_constraint_layout_list_item">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:gravity">center</item>
-        <item name="color">@color/colorTextPrimary</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingBottom">12dp</item>
     </style>
 
-    <style name="pageToolbar">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">?attr/actionBarSize</item>
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="layout_scrollFlags">scroll|enterAlways</item>
-        <item name="popupTheme">@style/AppTheme.PopupOverlay</item>
+    <style name="cities_forecast_image_view_list_item">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="contentDescription">@string/weather_icon</item>
     </style>
+
+    <style name="cities_forecast_city_text_view_list_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="cities_forecast_max_temp_text_view_list_item" parent="cities_forecast_city_text_view_list_item"/>
+
+    // cities main list item styles
+
+    <style name="cities_forecast_constraint_layout_main_list_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="cities_forecast_label">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+    </style>
+
+    <style name="cities_forecast_coldest_city_label_text_view_main_list_item" parent="cities_forecast_label">
+        <item name="android:text">@string/coldest_city_label</item>
+    </style>
+
+    <style name="cities_forecast_lowest_temp_lebel_text_view_main_list_item" parent="cities_forecast_label">
+        <item name="android:text">@string/lowest_temp_label</item>
+    </style>
+
+    <style name="cities_forecast_coldest_city_text_view_main_list_item" parent="cities_forecast_label">
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="cities_forecast_lowest_temp_text_view_main_list_item" parent="cities_forecast_coldest_city_text_view_main_list_item"/>
+
+    <style name="cities_forecast_description_text_view_list_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="horizontal_guideline">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="vertical_guideline">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    // extra detail styles
+
+    <style name="extra_detail_text_view_list_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+    <style name="extra_detail_city_text_view_main_list_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textSize">34sp</item>
+    </style>
+
+    <style name="extra_detail_weather_icon_main_list_item">
+        <item name="android:layout_width">96dp</item>
+        <item name="android:layout_height">96dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:contentDescription">@string/weather_icon</item>
+    </style>
+
+    <style name="extra_detail_weather_description_text_view_main_list_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="extra_detail_highest_temp_text_view_main_list_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textSize">60sp</item>
+    </style>
+
+    <style name="extra_detail_lowest_temp_text_view_main_list_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">34sp</item>
+    </style>
+
+    // recycler view style
+
+    <style name="recycler_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="recycler_view_empty_view">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="recycler_view_progress_bar">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
 </resources>

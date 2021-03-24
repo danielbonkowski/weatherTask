@@ -83,7 +83,9 @@ class MainWeatherAdapter(private var dataSet: Array<WeatherForecast>,
         val lowestTemp = itemView.findViewById<TextView>(R.id.lowest_temp_text_view)
 
         init {
-            itemView.setOnClickListener(this)
+            if(itemView.findViewById<TextView>(R.id.max_temp_text_view) != null){
+                itemView.setOnClickListener(this)
+            }
         }
 
         override fun onClick(v: View?) {
