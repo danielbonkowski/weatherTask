@@ -25,14 +25,14 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
     private val mainViewModel: MainFragmentViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var weatherList: Array<WeatherForecast>
-    private val emptyDataSet = Array<WeatherForecast>(0)
+    private val emptyDataSet = Array(0)
     {
-        WeatherForecast("", "", List<HourlyTemp>(0)
+        WeatherForecast("", "", List(0)
         { HourlyTemp(0.0, 0.0) })
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         val binding: FragmentMainBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_main, container, false
@@ -40,7 +40,7 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
 
         setHasOptionsMenu(true)
 
-        val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false);
+        val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         val viewAdapter = MainWeatherAdapter(emptyDataSet, this)
         val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
 
@@ -53,7 +53,7 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
     }
 
     private fun setupMainViewModel(binding: FragmentMainBinding, viewAdapter: MainWeatherAdapter) {
-        mainViewModel.cities.observe(viewLifecycleOwner, Observer { cities ->
+        mainViewModel.cities.observe(viewLifecycleOwner, { cities ->
             weatherList = cities
             hideProgressBar(binding)
 
@@ -67,7 +67,7 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
     }
 
     private fun setupSharedViewModel(viewAdapter: MainWeatherAdapter) {
-        sharedViewModel.isPreferredUnitMetric().observe(viewLifecycleOwner, Observer {
+        sharedViewModel.isPreferredUnitMetric().observe(viewLifecycleOwner, {
             viewAdapter.notifyDataSetChanged()
         })
     }
@@ -81,12 +81,12 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
         }
     }
 
-    fun showProgressBar(binding: FragmentMainBinding) {
+    private fun showProgressBar(binding: FragmentMainBinding) {
         binding.progressBar.visibility = View.VISIBLE
         binding.weatherMainRecyclerView.visibility = View.GONE
     }
 
-    fun hideProgressBar(binding: FragmentMainBinding) {
+    private fun hideProgressBar(binding: FragmentMainBinding) {
         binding.progressBar.visibility = View.GONE
         binding.weatherMainRecyclerView.visibility = View.VISIBLE
     }

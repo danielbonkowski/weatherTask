@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.weathertask.Data.WeatherForecast
 import com.example.android.weathertask.R
-import com.example.android.weathertask.Utils
+import com.example.android.weathertask.Utils.Utils
 
-class ExtraWeatherAdapter(val context: Context, private var dataSet: WeatherForecast) :
+class ExtraWeatherAdapter(private val context: Context, private var dataSet: WeatherForecast) :
     RecyclerView.Adapter<ExtraWeatherAdapter.ExtraWeatherViewHolder>() {
 
     private val VIEW_TYPE_MAIN: Int = 0

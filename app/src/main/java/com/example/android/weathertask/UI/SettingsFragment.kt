@@ -1,19 +1,12 @@
 package com.example.android.weathertask.UI
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.preference.*
 import com.example.android.weathertask.R
-import com.example.android.weathertask.Utils
+import com.example.android.weathertask.Utils.Utils
 import com.example.android.weathertask.ViewModel.SharedViewModel
-import com.example.android.weathertask.databinding.FragmentSettingsBinding
 
 
 class SettingsFragment : PreferenceFragmentCompat(),
@@ -71,7 +64,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
         val stringValue = value.toString()
 
         if (preference is ListPreference) {
-            val listPreference: ListPreference = preference;
+            val listPreference: ListPreference = preference
             val preferenceIndex = listPreference.findIndexOfValue(stringValue)
             if (preferenceIndex >= 0) {
                 preference.summary = listPreference.entries[preferenceIndex]

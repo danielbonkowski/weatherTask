@@ -3,7 +3,7 @@ package com.example.android.weathertask.Repository
 import androidx.lifecycle.LiveData
 import com.example.android.weathertask.Data.Data
 import com.example.android.weathertask.Data.WeatherForecast
-import com.example.android.weathertask.Utils
+import com.example.android.weathertask.Utils.Utils
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main

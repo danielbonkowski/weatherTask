@@ -17,11 +17,11 @@
         <item name="android:layout_width">@dimen/cities_forecast_image_view_width</item>
         <item name="android:layout_height">@dimen/cities_forecast_image_view_height</item>
         <item name="android:layout_marginTop">@dimen/single_margin</item>
-        <item name="contentDescription">@string/weather_icon</item>
+        <item name="android:contentDescription">@string/weather_icon</item>
     </style>
 
     <style name="cities_forecast_city_text_view_list_item">
-        <item name="android:layout_width">@dimen/cities_forecast_city_text_view_list_item_width</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">@dimen/cities_forecast_city_text_view_list_item_margin_start</item>
         <item name="android:textAlignment">textStart</item>
@@ -39,7 +39,7 @@
     </style>
 
     <style name="cities_forecast_label">
-        <item name="android:layout_width">@dimen/cities_forecast_label_width</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/double_margin</item>
         <item name="android:textAlignment">center</item>
@@ -50,7 +50,7 @@
         <item name="android:text">@string/coldest_city_label</item>
     </style>
 
-    <style name="cities_forecast_lowest_temp_lebel_text_view_main_list_item" parent="cities_forecast_label">
+    <style name="cities_forecast_lowest_temp_label_text_view_main_list_item" parent="cities_forecast_label">
         <item name="android:text">@string/lowest_temp_label</item>
     </style>
 

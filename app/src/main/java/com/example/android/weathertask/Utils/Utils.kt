@@ -1,11 +1,11 @@
-package com.example.android.weathertask
+package com.example.android.weathertask.Utils
 
 import android.content.Context
 import androidx.preference.PreferenceManager
 import com.example.android.weathertask.Data.WeatherForecast
+import com.example.android.weathertask.R
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -66,7 +66,7 @@ class Utils {
         }
 
         fun calculateAverageDailyTemperatureForSingleCity(weatherForecast: WeatherForecast) : Double{
-            var result = 0.0;
+            var result = 0.0
 
             for(hourlyTemp in weatherForecast.hourlyTemp){
                 result += hourlyTemp.temp
@@ -82,14 +82,14 @@ class Utils {
                 resourceId = R.string.format_temperature_celsius
             } else {
                 resourceId = R.string.format_temperature_fahrenheit
-                temperatureToDisplay = Utils.celsiusToFahrenheit(temperature)
+                temperatureToDisplay = celsiusToFahrenheit(temperature)
             }
 
             return String.format(context.getString(resourceId), temperatureToDisplay)
         }
 
         fun getWeatherDescription(weatherForecast: WeatherForecast): String {
-            return weatherForecast.weather.capitalize()
+            return weatherForecast.weather.capitalize(Locale.getDefault())
         }
 
         fun getWeatherIcon(weatherForecast: WeatherForecast): Int {

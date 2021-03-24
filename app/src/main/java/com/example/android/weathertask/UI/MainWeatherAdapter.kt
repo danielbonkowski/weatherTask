@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.weathertask.Data.WeatherForecast
 import com.example.android.weathertask.R
-import com.example.android.weathertask.Utils
+import com.example.android.weathertask.Utils.Utils
 
 class MainWeatherAdapter( private var dataSet: Array<WeatherForecast>,
                          private val mMainForecastClickHandler: MainWeatherAdapterOnClickHandler
@@ -36,7 +36,7 @@ class MainWeatherAdapter( private var dataSet: Array<WeatherForecast>,
         }
 
         val view = LayoutInflater.from(parent.context)
-            .inflate(layoutId, parent, false);
+            .inflate(layoutId, parent, false)
         return WeatherViewHolder(view)
     }
 
@@ -102,7 +102,7 @@ class MainWeatherAdapter( private var dataSet: Array<WeatherForecast>,
     inner class WeatherViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
         val city = itemView.findViewById<TextView>(R.id.city_text_view)
         val weatherIcon = itemView.findViewById<ImageView>(R.id.weather_icon)
-        val weatherDescription = itemView.findViewById<TextView>(R.id.weather_desctiption_text_view)
+        val weatherDescription = itemView.findViewById<TextView>(R.id.weather_description_text_view)
         val maxTemp = itemView.findViewById<TextView>(R.id.max_temp_text_view)
         val coldestCity = itemView.findViewById<TextView>(R.id.coldest_city_text_view)
         val lowestTemp = itemView.findViewById<TextView>(R.id.lowest_temp_text_view)
@@ -115,9 +115,9 @@ class MainWeatherAdapter( private var dataSet: Array<WeatherForecast>,
 
         override fun onClick(v: View?) {
             val adapterPosition = adapterPosition
-            val weatherForcast = dataSet[adapterPosition - NR_OF_MAIN_ITEMS]
+            val weatherForecast = dataSet[adapterPosition - NR_OF_MAIN_ITEMS]
             if(v != null){
-                mMainForecastClickHandler.onClick(weatherForcast, v)
+                mMainForecastClickHandler.onClick(weatherForecast, v)
             }
         }
     }

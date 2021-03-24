@@ -3,6 +3,7 @@ package com.example.android.weathertask
 
 import com.example.android.weathertask.Data.HourlyTemp
 import com.example.android.weathertask.Data.WeatherForecast
+import com.example.android.weathertask.Utils.Utils
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 import kotlin.math.roundToInt
@@ -18,7 +19,7 @@ class UtilsTest {
 
     @Test
     fun `get weather icon returns sunny resource`(){
-        val weatherForecast = WeatherForecast("", "sunny", List<HourlyTemp>(0)
+        val weatherForecast = WeatherForecast("", "sunny", List(0)
         { HourlyTemp(0.0, 0.0) })
         val result = Utils.getWeatherIcon(weatherForecast)
 
@@ -27,7 +28,7 @@ class UtilsTest {
 
     @Test
     fun `get weather description capitalized`(){
-        val weatherForecast = WeatherForecast("", "snowy", List<HourlyTemp>(0)
+        val weatherForecast = WeatherForecast("", "snowy", List(0)
         { HourlyTemp(0.0, 0.0) })
         val result = Utils.getWeatherDescription(weatherForecast)
 
@@ -78,7 +79,7 @@ class UtilsTest {
             listOf(HourlyTemp(11.0, 0.0), HourlyTemp(14.0, 4.0),
                 HourlyTemp(18.0, 8.0), HourlyTemp(22.0, 12.0),
                 HourlyTemp(15.0, 16.0), HourlyTemp(13.0, 20.0)))
-        val cities = listOf<WeatherForecast>(warsaw, paris).toTypedArray()
+        val cities = listOf(warsaw, paris).toTypedArray()
         val result = Utils.findLowestTempInAllCities(cities)
 
         assertThat(result).isEqualTo(-2.0)
@@ -94,7 +95,7 @@ class UtilsTest {
             listOf(HourlyTemp(-6.0, 0.0), HourlyTemp(-4.0, 4.0),
                 HourlyTemp(2.0, 8.0), HourlyTemp(4.0, 12.0),
                 HourlyTemp(5.5, 16.0), HourlyTemp(3.0, 20.0)))
-        val cities = listOf<WeatherForecast>(warsaw, berlin).toTypedArray()
+        val cities = listOf(warsaw, berlin).toTypedArray()
         val result = Utils.findCityWithLowestAverageDailyTemperature(cities)
 
         assertThat(result).isEqualTo("Warsaw")

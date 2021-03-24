@@ -26,11 +26,11 @@
         app:layout_constraintEnd_toEndOf="@+id/coldest_city_label_text_view"
         app:layout_constraintStart_toStartOf="@+id/coldest_city_label_text_view"
         app:layout_constraintTop_toBottomOf="@+id/coldest_city_label_text_view"
-        tools:text="Warszawa" />
+        tools:text="Warsaw" />
 
     <TextView
         android:id="@+id/lowest_temp_label_text_view"
-        style="@style/cities_forecast_lowest_temp_lebel_text_view_main_list_item"
+        style="@style/cities_forecast_lowest_temp_label_text_view_main_list_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/horizontal_middle"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,8 +39,8 @@
         android:id="@+id/lowest_temp_text_view"
         style="@style/cities_forecast_lowest_temp_text_view_main_list_item"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/coldest_city_label_text_view"
+        app:layout_constraintEnd_toEndOf="@+id/lowest_temp_label_text_view"
+        app:layout_constraintStart_toStartOf="@+id/lowest_temp_label_text_view"
         app:layout_constraintTop_toBottomOf="@+id/lowest_temp_label_text_view"
         tools:text="-27" />
 

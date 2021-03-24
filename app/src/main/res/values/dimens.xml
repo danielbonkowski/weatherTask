@@ -21,13 +21,13 @@
     <dimen name="recycler_view_progress_bar_height">48dp</dimen>
 
 
-    <dimen name="cities_forecast_label_width">0dp</dimen>
+
     <dimen name="cities_forecast_image_view_width">40dp</dimen>
     <dimen name="cities_forecast_image_view_height">40dp</dimen>
 
     <dimen name="cities_forecast_constraint_layout_padding_bottom">12dp</dimen>
     <dimen name="cities_forecast_city_text_view_list_item_margin_start">32dp</dimen>
-    <dimen name="cities_forecast_city_text_view_list_item_width">0dp</dimen>
+
 
 
 

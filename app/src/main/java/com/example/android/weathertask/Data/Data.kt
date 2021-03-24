@@ -3,7 +3,8 @@ package com.example.android.weathertask.Data
 class Data : DataInterface {
 
     override fun getJsonData(): String {
-        val json = """
+
+        return """
             [
                {
                   "city":"Warsaw",
@@ -55,7 +56,5 @@ class Data : DataInterface {
                }
             ]
         """.trimIndent()
-
-        return json
     }
 }

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.weathertask.Data.HourlyTemp
 import com.example.android.weathertask.Data.WeatherForecast
 import com.example.android.weathertask.R
-import com.example.android.weathertask.Utils
+import com.example.android.weathertask.Utils.Utils
 import com.example.android.weathertask.ViewModel.SharedViewModel
 import com.example.android.weathertask.databinding.FragmentDetailBinding
 
@@ -22,20 +22,20 @@ import com.example.android.weathertask.databinding.FragmentDetailBinding
 class DetailFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    private val emptyExtraDataSet = WeatherForecast("", "", List<HourlyTemp>(0)
+    private val emptyExtraDataSet = WeatherForecast("", "", List(0)
     { HourlyTemp(0.0, 0.0) })
-    lateinit var weatherData: WeatherForecast
+    private lateinit var weatherData: WeatherForecast
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val binding: FragmentDetailBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_detail, container, false
         )
 
-        val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false);
+        val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         val viewAdapter = ExtraWeatherAdapter(requireContext(), emptyExtraDataSet)
         val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
 
@@ -60,7 +60,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun setupSharedViewModel(viewAdapter: ExtraWeatherAdapter) {
-        sharedViewModel.getSelectedCity().observe(viewLifecycleOwner, Observer { weatherForecast ->
+        sharedViewModel.getSelectedCity().observe(viewLifecycleOwner, { weatherForecast ->
             if (weatherForecast != null) {
                 weatherData = weatherForecast
                 viewAdapter.setData(weatherForecast)
@@ -97,12 +97,12 @@ class DetailFragment : Fragment() {
             )
                 .resolveActivity(activity!!.packageManager)
         ) {
-            menu?.findItem(R.id.share).isVisible = false
+            menu.findItem(R.id.share).isVisible = false
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item!!.itemId) {
+        when (item.itemId) {
             R.id.share -> shareSuccess()
         }
         return super.onOptionsItemSelected(item)

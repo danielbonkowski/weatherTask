@@ -6,7 +6,7 @@ import com.example.android.weathertask.Data.WeatherForecast
 
 class SharedViewModel : ViewModel() {
 
-    private val selectedCity = MutableLiveData<WeatherForecast>();
+    private val selectedCity = MutableLiveData<WeatherForecast>()
     private val isPreferredUnitMetric = MutableLiveData<Boolean>()
 
     fun selectCity(city: WeatherForecast) {

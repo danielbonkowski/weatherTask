@@ -4,16 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/cities_forecast_constraint_layout_list_item">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontal_middle"
-        style="@style/vertical_guideline"
-        app:layout_constraintGuide_percent="0.6"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="0dp"/>
-
     <ImageView
         android:id="@+id/weather_icon"
         style="@style/cities_forecast_image_view_list_item"
+
+        app:layout_constraintEnd_toStartOf="@+id/city_text_view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_cloudy" />
@@ -21,10 +18,12 @@
     <TextView
         android:id="@+id/city_text_view"
         style="@style/cities_forecast_city_text_view_list_item"
-        app:layout_constraintBottom_toBottomOf="@+id/weather_desctiption_text_view"
-        app:layout_constraintEnd_toStartOf="@+id/horizontal_middle"
+        app:layout_constraintBottom_toBottomOf="@+id/weather_description_text_view"
+        app:layout_constraintEnd_toStartOf="@+id/max_temp_text_view"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/weather_icon"
         app:layout_constraintTop_toTopOf="@+id/weather_icon"
+        app:layout_constraintVertical_bias="0.571"
         tools:text="New York:" />
 
     <TextView
@@ -32,21 +31,22 @@
         style="@style/cities_forecast_max_temp_text_view_list_item"
         app:layout_constraintBottom_toBottomOf="@+id/city_text_view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/city_text_view"
         app:layout_constraintTop_toTopOf="@+id/city_text_view"
-        tools:text="12"/>
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="12" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
         style="@style/horizontal_guideline"
         app:layout_constraintGuide_percent="0.5" />
 
     <TextView
-        android:id="@+id/weather_desctiption_text_view"
+        android:id="@+id/weather_description_text_view"
         style="@style/cities_forecast_description_text_view_list_item"
-        tools:text="Cloudy"
         app:layout_constraintEnd_toEndOf="@+id/weather_icon"
         app:layout_constraintStart_toStartOf="@+id/weather_icon"
-        app:layout_constraintTop_toBottomOf="@+id/weather_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/weather_icon"
+        tools:text="Cloudy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

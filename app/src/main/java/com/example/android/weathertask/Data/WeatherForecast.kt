@@ -8,6 +8,4 @@ data class WeatherForecast(
     @SerialName("city") val city: String,
     @SerialName("weather") val weather: String,
     @SerialName("hourly_temp") val hourlyTemp: List<HourlyTemp>
-) {
-
-}
+)
