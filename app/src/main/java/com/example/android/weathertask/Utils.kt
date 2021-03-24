@@ -20,8 +20,8 @@ class Utils {
         fun findLowestTempInAllCities(weatherForecastArray: Array<WeatherForecast>): Double{
             var lowestTemp = Double.MAX_VALUE
 
-            for(weatherForcast in weatherForecastArray){
-                for(hourlyTemp in weatherForcast.hourlyTemp){
+            for(weatherForecast in weatherForecastArray){
+                for(hourlyTemp in weatherForecast.hourlyTemp){
                     if(hourlyTemp.temp < lowestTemp){
                         lowestTemp = hourlyTemp.temp
                     }
@@ -55,17 +55,17 @@ class Utils {
             var city = ""
             var lowestAverageTemp = Double.MAX_VALUE
 
-            for(weatherForcast in weatherForecastArray){
-                val averageTemp = calculateAverageDailyTemperatureForSingleCity(weatherForcast)
+            for(weatherForecast in weatherForecastArray){
+                val averageTemp = calculateAverageDailyTemperatureForSingleCity(weatherForecast)
                 if(averageTemp < lowestAverageTemp){
                     lowestAverageTemp = averageTemp
-                    city = weatherForcast.city
+                    city = weatherForecast.city
                 }
             }
             return city
         }
 
-        fun calculateAverageDailyTemperatureForSingleCity(weatherForecast: WeatherForecast) : Double{
+        private fun calculateAverageDailyTemperatureForSingleCity(weatherForecast: WeatherForecast) : Double{
             var result = 0.0;
 
             for(hourlyTemp in weatherForecast.hourlyTemp){
@@ -101,14 +101,14 @@ class Utils {
             }
         }
 
-        fun getTimeDescription(time: Double): String{
+        fun getTimeDescription(context: Context, time: Double): String{
             return when(time){
-                0.0 -> "Midnight"
-                4.0 -> "Early morning"
-                8.0 -> "Morning"
-                12.0 -> "Noon"
-                16.0 -> "Afternoon"
-                else -> "Evening"
+                0.0 -> context.getString(R.string.midnight)
+                4.0 -> context.getString(R.string.early_morning)
+                8.0 -> context.getString(R.string.morning)
+                12.0 -> context.getString(R.string.noon)
+                16.0 -> context.getString(R.string.afternoon)
+                else -> context.getString(R.string.evening)
             }
         }
 
@@ -125,7 +125,4 @@ class Utils {
             return celsiusTemp * 1.8 + 32
         }
     }
-
-
-
 }

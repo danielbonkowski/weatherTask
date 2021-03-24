@@ -18,11 +18,7 @@ import com.example.android.weathertask.Utils
 import com.example.android.weathertask.ViewModel.SharedViewModel
 import com.example.android.weathertask.databinding.FragmentDetailBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class DetailFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
@@ -42,7 +38,7 @@ class DetailFragment : Fragment() {
         setHasOptionsMenu(true)
 
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false);
-        val viewAdapter = ExtraWeatherAdapter(emptyExtraDataSet)
+        val viewAdapter = ExtraWeatherAdapter(requireContext(), emptyExtraDataSet)
         val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
 
         sharedViewModel.getSelectedCity().observe(viewLifecycleOwner, Observer { weatherForecast ->

@@ -10,7 +10,7 @@ import com.example.android.weathertask.Data.WeatherForecast
 import com.example.android.weathertask.R
 import com.example.android.weathertask.Utils
 
-class MainWeatherAdapter(private var dataSet: Array<WeatherForecast>,
+class MainWeatherAdapter( private var dataSet: Array<WeatherForecast>,
                          private val mMainForecastClickHandler: MainWeatherAdapterOnClickHandler
 ) :
     RecyclerView.Adapter<MainWeatherAdapter.WeatherViewHolder>() {

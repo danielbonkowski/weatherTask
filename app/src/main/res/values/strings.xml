@@ -25,5 +25,20 @@
     <string name="pref_units_metric" translatable="false">metric</string>
     <string name="pref_units_imperial" translatable="false">imperial</string>
 
+    // extra detail time of the day
+    <string name="midnight">Midnight</string>
+    <string name="early_morning">Early Morning</string>
+    <string name="morning">Morning</string>
+    <string name="noon">Noon</string>
+    <string name="afternoon">Afternoon</string>
+    <string name="evening">Evening</string>
+
+    // extra detail weather description
+    <string name="sunny">Sunny</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="rainy">Rainy</string>
+    <string name="snowy">Snowy</string>
+
+
 
 </resources>

@@ -23,11 +23,6 @@ import com.example.android.weathertask.ViewModel.SharedViewModel
 import com.example.android.weathertask.databinding.FragmentMainBinding
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHandler{
 
     private val mainViewModel: MainFragmentViewModel by viewModels()

@@ -1,5 +1,6 @@
 package com.example.android.weathertask.UI
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.example.android.weathertask.Data.WeatherForecast
 import com.example.android.weathertask.R
 import com.example.android.weathertask.Utils
 
-class ExtraWeatherAdapter (private var dataSet: WeatherForecast)
+class ExtraWeatherAdapter (val context: Context, private var dataSet: WeatherForecast)
     : RecyclerView.Adapter<ExtraWeatherAdapter.ExtraWeatherViewHolder>(){
 
     private val VIEW_TYPE_MAIN : Int = 0
@@ -66,7 +67,7 @@ class ExtraWeatherAdapter (private var dataSet: WeatherForecast)
                 holder.lowestTemp.text = formattedLowestTemp
             }
             else -> {
-                holder.hour.text = Utils.getTimeDescription(dataSet.hourlyTemp[position - 1].hour)
+                holder.hour.text = Utils.getTimeDescription(context, dataSet.hourlyTemp[position - 1].hour)
 
                 val hourlyTemp = dataSet.hourlyTemp[position -1].temp
                 val formattedHourlyTemp =

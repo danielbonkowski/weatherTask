@@ -16,11 +16,6 @@ import com.example.android.weathertask.ViewModel.SharedViewModel
 import com.example.android.weathertask.databinding.FragmentSettingsBinding
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
