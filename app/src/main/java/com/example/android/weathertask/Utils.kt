@@ -1,6 +1,7 @@
 package com.example.android.weathertask
 
 import android.content.Context
+import androidx.preference.PreferenceManager
 import com.example.android.weathertask.Data.WeatherForecast
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -74,8 +75,17 @@ class Utils {
         }
 
         fun formatTemperature(context: Context, temperature: Double): String{
-            var celciusFormatResourceId = R.string.format_temperature_celsius
-            return String.format(context.getString(celciusFormatResourceId), temperature)
+
+            var resourceId = -1
+            var temperatureToDisplay = temperature
+            if(isMetric(context)) {
+                resourceId = R.string.format_temperature_celsius
+            } else {
+                resourceId = R.string.format_temperature_fahrenheit
+                temperatureToDisplay = Utils.celsiusToFahrenheit(temperature)
+            }
+
+            return String.format(context.getString(resourceId), temperatureToDisplay)
         }
 
         fun getWeatherDescription(weatherForecast: WeatherForecast): String {
@@ -102,9 +112,17 @@ class Utils {
             }
         }
 
-        fun getCurrentDate() : String{
-            val simpleDateFormat = SimpleDateFormat("EEEE, MMMM d", Locale.ENGLISH)
-            return simpleDateFormat.format(Date())
+        fun isMetric(context: Context): Boolean{
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            val metricUnit = context.getString(R.string.pref_units_metric)
+            val keyForUnits = context.getString(R.string.key_temperature_units)
+            val preferredUnits = preferences.getString(keyForUnits, metricUnit)
+
+            return metricUnit == preferredUnits
+        }
+
+        fun celsiusToFahrenheit(celsiusTemp: Double): Double{
+            return celsiusTemp * 1.8 + 32
         }
     }
 

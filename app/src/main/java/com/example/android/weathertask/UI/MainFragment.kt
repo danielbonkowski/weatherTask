@@ -1,5 +1,6 @@
 package com.example.android.weathertask.UI
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -7,15 +8,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.weathertask.Data.HourlyTemp
 import com.example.android.weathertask.Data.WeatherForecast
 import com.example.android.weathertask.R
+import com.example.android.weathertask.Utils
 import com.example.android.weathertask.ViewModel.MainFragmentViewModel
 import com.example.android.weathertask.ViewModel.SharedViewModel
 import com.example.android.weathertask.databinding.FragmentMainBinding
@@ -26,7 +28,7 @@ import com.example.android.weathertask.databinding.FragmentMainBinding
  * Use the [MainFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHandler {
+class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHandler{
 
     private val mainViewModel: MainFragmentViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
@@ -64,6 +66,10 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
             }
         })
 
+        sharedViewModel.isPreferredUnitMetric().observe(viewLifecycleOwner, Observer {
+            viewAdapter.notifyDataSetChanged()
+        })
+
         binding.weatherMainRecyclerView.apply {
             layoutManager = linearLayoutManager
             adapter = viewAdapter
@@ -92,4 +98,5 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
         super.onDestroy()
         mainViewModel.cancelJobs()
     }
+
 }

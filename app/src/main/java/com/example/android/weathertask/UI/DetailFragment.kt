@@ -8,10 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -49,7 +45,7 @@ class DetailFragment : Fragment() {
         val viewAdapter = ExtraWeatherAdapter(emptyExtraDataSet)
         val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
 
-        sharedViewModel.getSelected().observe(viewLifecycleOwner, Observer { weatherForecast ->
+        sharedViewModel.getSelectedCity().observe(viewLifecycleOwner, Observer { weatherForecast ->
 
             if (weatherForecast != null) {
                 weatherData = weatherForecast
