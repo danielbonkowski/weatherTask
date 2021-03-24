@@ -65,13 +65,13 @@ class Utils {
             return city
         }
 
-        private fun calculateAverageDailyTemperatureForSingleCity(weatherForecast: WeatherForecast) : Double{
+        fun calculateAverageDailyTemperatureForSingleCity(weatherForecast: WeatherForecast) : Double{
             var result = 0.0;
 
             for(hourlyTemp in weatherForecast.hourlyTemp){
                 result += hourlyTemp.temp
             }
-            return result / weatherForecast.hourlyTemp.size
+            return result / weatherForecast.hourlyTemp.size.toDouble()
         }
 
         fun formatTemperature(context: Context, temperature: Double): String{
@@ -121,7 +121,7 @@ class Utils {
             return metricUnit == preferredUnits
         }
 
-        private fun celsiusToFahrenheit(celsiusTemp: Double): Double{
+        fun celsiusToFahrenheit(celsiusTemp: Double): Double{
             return celsiusTemp * 1.8 + 32
         }
     }
