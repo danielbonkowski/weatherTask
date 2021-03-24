@@ -1,6 +1,6 @@
 package com.example.android.weathertask.Data
 
-class JsonData: DataInterface{
+class Data : DataInterface {
 
     override fun getJsonData(): String {
         val json = """

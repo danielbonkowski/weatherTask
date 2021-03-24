@@ -9,6 +9,8 @@
         <xliff:g id="temp">%1.0f</xliff:g>\u00B0F
     </string>
 
+    <string name="recycler_empty_view">No data available</string>
+
     <string name="settings">Settings</string>
 
     <string name="temperature_unit_label_metric">Metric</string>

@@ -16,7 +16,8 @@ import com.example.android.weathertask.ViewModel.SharedViewModel
 import com.example.android.weathertask.databinding.FragmentSettingsBinding
 
 
-class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
+class SettingsFragment : PreferenceFragmentCompat(),
+    SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
@@ -26,8 +27,15 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         val sharedPreferences = preferenceScreen.sharedPreferences
         val prefScreen = preferenceScreen
 
+        setupPreferences(prefScreen, sharedPreferences)
+    }
+
+    private fun setupPreferences(
+        prefScreen: PreferenceScreen,
+        sharedPreferences: SharedPreferences
+    ) {
         val count = prefScreen.preferenceCount - 1
-        for(i in 0..count){
+        for (i in 0..count) {
             val pref = prefScreen.getPreference(i)
             val value = sharedPreferences.getString(pref.key, "")
             if (value != null) {
@@ -47,29 +55,28 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if(!key.isNullOrEmpty()){
+        if (!key.isNullOrEmpty()) {
             val preference = findPreference<Preference>(key)
-            if(preference != null && preference is ListPreference){
+            if (preference != null && preference is ListPreference) {
                 if (sharedPreferences != null) {
-                    val result = sharedPreferences.getString(key, "")?.let { setPreferenceSummary(preference, it) }
-
+                    sharedPreferences.getString(key, "")
+                        ?.let { setPreferenceSummary(preference, it) }
                     sharedViewModel.selectUnit(Utils.isMetric(requireContext()))
                 }
             }
         }
     }
 
-    private fun setPreferenceSummary(preference: Preference, value: Any){
+    private fun setPreferenceSummary(preference: Preference, value: Any) {
         val stringValue = value.toString()
-        val key = preference.key
 
-        if(preference is ListPreference){
-            var listPreference: ListPreference = preference;
+        if (preference is ListPreference) {
+            val listPreference: ListPreference = preference;
             val preferenceIndex = listPreference.findIndexOfValue(stringValue)
-            if(preferenceIndex >= 0){
+            if (preferenceIndex >= 0) {
                 preference.summary = listPreference.entries[preferenceIndex]
             }
-        }else{
+        } else {
             preference.summary = stringValue
         }
     }

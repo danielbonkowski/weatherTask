@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 import com.example.android.weathertask.Data.WeatherForecast
 import com.example.android.weathertask.Repository.Repository
 
-class MainFragmentViewModel : ViewModel(){
+class MainFragmentViewModel : ViewModel() {
 
     val cities: LiveData<Array<WeatherForecast>> = Repository.getData()
 
-    fun cancelJobs(){
+    fun cancelJobs() {
         Repository.cancelJobs()
     }
 }

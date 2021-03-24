@@ -1,6 +1,5 @@
 package com.example.android.weathertask.UI
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -10,32 +9,30 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.weathertask.Data.HourlyTemp
 import com.example.android.weathertask.Data.WeatherForecast
 import com.example.android.weathertask.R
-import com.example.android.weathertask.Utils
 import com.example.android.weathertask.ViewModel.MainFragmentViewModel
 import com.example.android.weathertask.ViewModel.SharedViewModel
 import com.example.android.weathertask.databinding.FragmentMainBinding
 
 
-class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHandler{
+class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHandler {
 
     private val mainViewModel: MainFragmentViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    private lateinit var weatherList : Array<WeatherForecast>
+    private lateinit var weatherList: Array<WeatherForecast>
     private val emptyDataSet = Array<WeatherForecast>(0)
-        { WeatherForecast("", "", List<HourlyTemp>(0)
-        { HourlyTemp(0.0, 0.0) }) }
+    {
+        WeatherForecast("", "", List<HourlyTemp>(0)
+        { HourlyTemp(0.0, 0.0) })
+    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val binding: FragmentMainBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_main, container, false
@@ -43,40 +40,71 @@ class MainFragment : Fragment(), MainWeatherAdapter.MainWeatherAdapterOnClickHan
 
         setHasOptionsMenu(true)
 
-
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false);
-        val viewAdapter = MainWeatherAdapter( emptyDataSet, this)
+        val viewAdapter = MainWeatherAdapter(emptyDataSet, this)
         val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
 
+        showProgressBar(binding)
+        setupMainViewModel(binding, viewAdapter)
+        setupSharedViewModel(viewAdapter)
+        setupRecyclerView(binding, linearLayoutManager, viewAdapter, dividerItemDecoration)
 
+        return binding.root
+    }
+
+    private fun setupMainViewModel(binding: FragmentMainBinding, viewAdapter: MainWeatherAdapter) {
         mainViewModel.cities.observe(viewLifecycleOwner, Observer { cities ->
             weatherList = cities
-            viewAdapter.setData(weatherList)
-            if(weatherList.isEmpty()){
-                binding.emptyView.visibility = View.VISIBLE
-                binding.weatherMainRecyclerView.visibility = View.GONE
-            }else{
-                binding.emptyView.visibility = View.GONE
-                binding.weatherMainRecyclerView.visibility = View.VISIBLE
+            hideProgressBar(binding)
+
+            if (cities == null || cities.isEmpty()) {
+                showEmptyView(binding)
+            } else {
+                hideEmptyView(binding)
+                viewAdapter.setData(weatherList)
             }
         })
+    }
 
+    private fun setupSharedViewModel(viewAdapter: MainWeatherAdapter) {
         sharedViewModel.isPreferredUnitMetric().observe(viewLifecycleOwner, Observer {
             viewAdapter.notifyDataSetChanged()
         })
+    }
 
+    private fun setupRecyclerView(binding: FragmentMainBinding, linearLayoutManager: LinearLayoutManager,
+        viewAdapter: MainWeatherAdapter, dividerItemDecoration: DividerItemDecoration) {
         binding.weatherMainRecyclerView.apply {
             layoutManager = linearLayoutManager
             adapter = viewAdapter
             addItemDecoration(dividerItemDecoration)
         }
+    }
 
-        return binding.root
+    fun showProgressBar(binding: FragmentMainBinding) {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.weatherMainRecyclerView.visibility = View.GONE
+    }
+
+    fun hideProgressBar(binding: FragmentMainBinding) {
+        binding.progressBar.visibility = View.GONE
+        binding.weatherMainRecyclerView.visibility = View.VISIBLE
+    }
+
+    private fun showEmptyView(binding: FragmentMainBinding) {
+        binding.emptyView.visibility = View.VISIBLE
+        binding.weatherMainRecyclerView.visibility = View.GONE
+    }
+
+    private fun hideEmptyView(binding: FragmentMainBinding) {
+        binding.emptyView.visibility = View.GONE
+        binding.weatherMainRecyclerView.visibility = View.VISIBLE
     }
 
     override fun onClick(weatherForecast: WeatherForecast, view: View) {
         sharedViewModel.selectCity(weatherForecast)
-        view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment())
+        view.findNavController()
+            .navigate(MainFragmentDirections.actionMainFragmentToDetailFragment())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

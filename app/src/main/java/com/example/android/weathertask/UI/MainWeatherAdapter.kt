@@ -17,6 +17,7 @@ class MainWeatherAdapter( private var dataSet: Array<WeatherForecast>,
 
     private val VIEW_TYPE_MAIN : Int = 0
     private val VIEW_TYPE_LIST : Int = 1
+    private val NR_OF_MAIN_ITEMS = 1
 
     interface MainWeatherAdapterOnClickHandler{
         fun onClick(weatherForecast: WeatherForecast, view: View)
@@ -43,24 +44,48 @@ class MainWeatherAdapter( private var dataSet: Array<WeatherForecast>,
 
         when(getItemViewType(position)){
             VIEW_TYPE_MAIN -> {
-                holderWeather.coldestCity.text = Utils.findCityWithLowestAverageDailyTemperature(dataSet)
-                val lowestTemp = Utils.findLowestTempInAllCities(dataSet)
-                holderWeather.lowestTemp.text = Utils.formatTemperature(holderWeather.lowestTemp.context, lowestTemp)
+                bindColdestCity(holderWeather)
+                bindLowestTemp(holderWeather)
             }
             else -> {
-                val highestTemp = Utils.findHighestTempForSingleCity(dataSet[position - 1])
-                val formattedHighestTemp =
-                    Utils.formatTemperature(holderWeather.city.context, highestTemp)
-                val tempData : String = dataSet[position - 1].city + ": "
-                holderWeather.city.text = tempData
-                val weatherIcon = Utils.getWeatherIcon(dataSet[position - 1])
-                val weatherDescription = Utils.getWeatherDescription(dataSet[position - 1])
-                holderWeather.weatherIcon.setImageResource(weatherIcon)
-                holderWeather.weatherDescription.text = weatherDescription
-                holderWeather.maxTemp.text = formattedHighestTemp
+                bindCity(position, holderWeather)
+                bindWeatherIcon(position, holderWeather)
+                bindWeatherDescription(position, holderWeather)
+                bindHighestTemp(position, holderWeather)
             }
         }
+    }
 
+    private fun bindColdestCity(holderWeather: WeatherViewHolder) {
+        holderWeather.coldestCity.text = Utils.findCityWithLowestAverageDailyTemperature(dataSet)
+    }
+
+    private fun bindLowestTemp(holderWeather: WeatherViewHolder) {
+        val lowestTemp = Utils.findLowestTempInAllCities(dataSet)
+        holderWeather.lowestTemp.text =
+            Utils.formatTemperature(holderWeather.lowestTemp.context, lowestTemp)
+    }
+
+    private fun bindCity(position: Int, holderWeather: WeatherViewHolder) {
+        val tempData: String = dataSet[position - NR_OF_MAIN_ITEMS].city + ": "
+        holderWeather.city.text = tempData
+    }
+
+    private fun bindWeatherIcon(position: Int, holderWeather: WeatherViewHolder) {
+        val weatherIcon = Utils.getWeatherIcon(dataSet[position - NR_OF_MAIN_ITEMS])
+        holderWeather.weatherIcon.setImageResource(weatherIcon)
+    }
+
+    private fun bindWeatherDescription(position: Int, holderWeather: WeatherViewHolder) {
+        val weatherDescription = Utils.getWeatherDescription(dataSet[position - NR_OF_MAIN_ITEMS])
+        holderWeather.weatherDescription.text = weatherDescription
+    }
+
+    private fun bindHighestTemp(position: Int, holderWeather: WeatherViewHolder) {
+        val highestTemp = Utils.findHighestTempForSingleCity(dataSet[position - NR_OF_MAIN_ITEMS])
+        val formattedHighestTemp =
+            Utils.formatTemperature(holderWeather.city.context, highestTemp)
+        holderWeather.maxTemp.text = formattedHighestTemp
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -71,7 +96,7 @@ class MainWeatherAdapter( private var dataSet: Array<WeatherForecast>,
     }
 
     override fun getItemCount(): Int {
-        return if(dataSet.isNotEmpty()) dataSet.size + 1 else 0
+        return if(dataSet.isNotEmpty()) dataSet.size + NR_OF_MAIN_ITEMS else 0
     }
 
     inner class WeatherViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
@@ -90,7 +115,7 @@ class MainWeatherAdapter( private var dataSet: Array<WeatherForecast>,
 
         override fun onClick(v: View?) {
             val adapterPosition = adapterPosition
-            val weatherForcast = dataSet[adapterPosition - 1]
+            val weatherForcast = dataSet[adapterPosition - NR_OF_MAIN_ITEMS]
             if(v != null){
                 mMainForecastClickHandler.onClick(weatherForcast, v)
             }

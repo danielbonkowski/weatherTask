@@ -1,7 +1,7 @@
 package com.example.android.weathertask.Repository
 
 import androidx.lifecycle.LiveData
-import com.example.android.weathertask.Data.JsonData
+import com.example.android.weathertask.Data.Data
 import com.example.android.weathertask.Data.WeatherForecast
 import com.example.android.weathertask.Utils
 import kotlinx.coroutines.*
@@ -12,15 +12,15 @@ object Repository {
 
     var job: CompletableJob? = null
 
-    fun getData(): LiveData<Array<WeatherForecast>>{
+    fun getData(): LiveData<Array<WeatherForecast>> {
         job = Job()
-        return object: LiveData<Array<WeatherForecast>>(){
+        return object : LiveData<Array<WeatherForecast>>() {
             override fun onActive() {
                 super.onActive()
                 job?.let { thisJob ->
                     CoroutineScope(IO + thisJob).launch {
                         val cities = loadCities()
-                        withContext(Main){
+                        withContext(Main) {
                             value = cities
                             thisJob.complete()
                         }
@@ -30,12 +30,12 @@ object Repository {
         }
     }
 
-    fun cancelJobs(){
+    fun cancelJobs() {
         job?.cancel()
     }
 
-    fun loadCities(): Array<WeatherForecast>{
-        val jsonData = JsonData()
-        return Utils.decodeJsonToModel(jsonData.getJsonData())
+    fun loadCities(): Array<WeatherForecast> {
+        val data = Data()
+        return Utils.decodeJsonToModel(data.getJsonData())
     }
 }

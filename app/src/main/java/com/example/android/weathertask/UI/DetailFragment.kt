@@ -35,32 +35,40 @@ class DetailFragment : Fragment() {
             inflater, R.layout.fragment_detail, container, false
         )
 
-        setHasOptionsMenu(true)
-
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false);
         val viewAdapter = ExtraWeatherAdapter(requireContext(), emptyExtraDataSet)
         val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
 
-        sharedViewModel.getSelectedCity().observe(viewLifecycleOwner, Observer { weatherForecast ->
+        setHasOptionsMenu(true)
 
-            if (weatherForecast != null) {
-                weatherData = weatherForecast
-                viewAdapter.setData(weatherForecast)
-            }
-        })
+        setupRecyclerView(binding, linearLayoutManager, viewAdapter, dividerItemDecoration)
+        setupSharedViewModel(viewAdapter)
+
+        return binding.root
+    }
+
+    private fun setupRecyclerView(
+        binding: FragmentDetailBinding, linearLayoutManager: LinearLayoutManager,
+        viewAdapter: ExtraWeatherAdapter, dividerItemDecoration: DividerItemDecoration
+    ) {
 
         binding.extraWeatherRecyclerView.apply {
             layoutManager = linearLayoutManager
             adapter = viewAdapter
             addItemDecoration(dividerItemDecoration)
         }
-
-        return binding.root
     }
 
-    private fun getShareIntent(): Intent {
-        val city = weatherData.city
-        val temperature = Utils.findHighestTempForSingleCity(weatherData)
+    private fun setupSharedViewModel(viewAdapter: ExtraWeatherAdapter) {
+        sharedViewModel.getSelectedCity().observe(viewLifecycleOwner, Observer { weatherForecast ->
+            if (weatherForecast != null) {
+                weatherData = weatherForecast
+                viewAdapter.setData(weatherForecast)
+            }
+        })
+    }
+
+    private fun getShareIntent(city: String, temperature: Double): Intent {
         val formattedTemp = context?.let { Utils.formatTemperature(it, temperature) }
         val message = "Today in $city the highest temperature will reach $formattedTemp"
 
@@ -70,21 +78,31 @@ class DetailFragment : Fragment() {
             .intent
     }
 
-    private fun shareSuccess(){
-        startActivity(getShareIntent())
+    private fun shareSuccess() {
+        startActivity(
+            getShareIntent(
+                weatherData.city,
+                Utils.findHighestTempForSingleCity(weatherData)
+            )
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.details, menu)
 
-        if(null == getShareIntent().resolveActivity(activity!!.packageManager)){
+        if (null == getShareIntent(
+                weatherData.city,
+                Utils.findHighestTempForSingleCity(weatherData)
+            )
+                .resolveActivity(activity!!.packageManager)
+        ) {
             menu?.findItem(R.id.share).isVisible = false
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item!!.itemId){
+        when (item!!.itemId) {
             R.id.share -> shareSuccess()
         }
         return super.onOptionsItemSelected(item)

@@ -9,11 +9,11 @@ class SharedViewModel : ViewModel() {
     private val selectedCity = MutableLiveData<WeatherForecast>();
     private val isPreferredUnitMetric = MutableLiveData<Boolean>()
 
-    fun selectCity(city: WeatherForecast){
+    fun selectCity(city: WeatherForecast) {
         selectedCity.value = city
     }
 
-    fun selectUnit(isMetric: Boolean ){
+    fun selectUnit(isMetric: Boolean) {
         isPreferredUnitMetric.value = isMetric
     }
 
