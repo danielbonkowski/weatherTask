@@ -8,24 +8,24 @@
         <item name="android:background">?android:attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="android:paddingStart">16dp</item>
-        <item name="android:paddingEnd">16dp</item>
-        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingStart">@dimen/double_padding</item>
+        <item name="android:paddingEnd">@dimen/double_padding</item>
+        <item name="android:paddingBottom">@dimen/cities_forecast_constraint_layout_padding_bottom</item>
     </style>
 
     <style name="cities_forecast_image_view_list_item">
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_width">@dimen/cities_forecast_image_view_width</item>
+        <item name="android:layout_height">@dimen/cities_forecast_image_view_height</item>
+        <item name="android:layout_marginTop">@dimen/single_margin</item>
         <item name="contentDescription">@string/weather_icon</item>
     </style>
 
     <style name="cities_forecast_city_text_view_list_item">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">@dimen/cities_forecast_city_text_view_list_item_width</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginStart">@dimen/cities_forecast_city_text_view_list_item_margin_start</item>
         <item name="android:textAlignment">textStart</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/normal_text</item>
     </style>
 
     <style name="cities_forecast_max_temp_text_view_list_item" parent="cities_forecast_city_text_view_list_item"/>
@@ -39,9 +39,9 @@
     </style>
 
     <style name="cities_forecast_label">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">@dimen/cities_forecast_label_width</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginTop">@dimen/double_margin</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/colorTextSecondary</item>
     </style>
@@ -55,8 +55,8 @@
     </style>
 
     <style name="cities_forecast_coldest_city_text_view_main_list_item" parent="cities_forecast_label">
-        <item name="android:layout_marginBottom">16dp</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:layout_marginBottom">@dimen/double_margin</item>
+        <item name="android:textSize">@dimen/medium_text</item>
     </style>
 
     <style name="cities_forecast_lowest_temp_text_view_main_list_item" parent="cities_forecast_coldest_city_text_view_main_list_item"/>
@@ -64,7 +64,7 @@
     <style name="cities_forecast_description_text_view_list_item">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/small_text</item>
     </style>
 
     <style name="horizontal_guideline">
@@ -84,41 +84,41 @@
     <style name="extra_detail_text_view_list_item">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">16dp</item>
-        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginTop">@dimen/double_margin</item>
+        <item name="android:layout_marginBottom">@dimen/double_margin</item>
     </style>
 
     <style name="extra_detail_city_text_view_main_list_item">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">16dp</item>
-        <item name="android:textSize">34sp</item>
+        <item name="android:layout_marginTop">@dimen/double_margin</item>
+        <item name="android:textSize">@dimen/extra_detail_city_text_size</item>
     </style>
 
     <style name="extra_detail_weather_icon_main_list_item">
-        <item name="android:layout_width">96dp</item>
-        <item name="android:layout_height">96dp</item>
-        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_width">@dimen/extra_detail_weather_icon_width</item>
+        <item name="android:layout_height">@dimen/extra_detail_weather_icon_height</item>
+        <item name="android:layout_marginTop">@dimen/single_margin</item>
         <item name="android:contentDescription">@string/weather_icon</item>
     </style>
 
     <style name="extra_detail_weather_description_text_view_main_list_item">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/normal_text</item>
     </style>
 
     <style name="extra_detail_highest_temp_text_view_main_list_item">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:textSize">60sp</item>
+        <item name="android:layout_marginTop">@dimen/single_margin</item>
+        <item name="android:textSize">@dimen/extra_detail_highest_temp_text_size</item>
     </style>
 
     <style name="extra_detail_lowest_temp_text_view_main_list_item">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">34sp</item>
+        <item name="android:textSize">@dimen/extra_detail_lowest_temp_text_size</item>
     </style>
 
     // recycler view style
@@ -127,7 +127,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:clipToPadding">false</item>
-        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingBottom">@dimen/single_padding</item>
     </style>
 
     <style name="recycler_view_empty_view">
@@ -137,8 +137,8 @@
     </style>
 
     <style name="recycler_view_progress_bar">
-        <item name="android:layout_width">48dp</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">@dimen/recycler_view_progress_bar_width</item>
+        <item name="android:layout_height">@dimen/recycler_view_progress_bar_height</item>
         <item name="android:visibility">gone</item>
     </style>
 

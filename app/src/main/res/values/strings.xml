@@ -1,7 +1,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Weather</string>
 
-
     <string name="format_temperature_celsius">
         <xliff:g id="temp">%1.0f</xliff:g>\u00B0C
     </string>
@@ -9,17 +8,12 @@
     <string name="format_temperature_fahrenheit">
         <xliff:g id="temp">%1.0f</xliff:g>\u00B0F
     </string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="settings">Settings</string>
 
     <string name="temperature_unit_label_metric">Metric</string>
     <string name="temperature_unit_label_imperial">Imperial</string>
 
-    <string name="temperature_unit_metric">metric</string>
-    <string name="temperature_unit_imperial">imperial</string>
-    <string name="key_temperature_units">key temperature units</string>
     <string name="temperature_units">Temperature Units</string>
     <string name="coldest_city_label">Coldest City</string>
     <string name="lowest_temp_label">Lowest Temperature</string>
@@ -27,8 +21,9 @@
     <string name="share">Share</string>
     <string name="weather_icon">Weather icon</string>
     <string name="detail_title">Details</string>
-    <string name="pref_units_key">units</string>
-    <string name="pref_units_metric">metric</string>
+    <string name="key_temperature_units" translatable="false">key temperature units</string>
+    <string name="pref_units_metric" translatable="false">metric</string>
+    <string name="pref_units_imperial" translatable="false">imperial</string>
 
 
 </resources>

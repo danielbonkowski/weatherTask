@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="single_margin">8dp</dimen>
+    <dimen name="double_margin">16dp</dimen>
+    <dimen name="single_padding">8dp</dimen>
+    <dimen name="double_padding">16dp</dimen>
+    <dimen name="normal_text">20sp</dimen>
+    <dimen name="small_text">12sp</dimen>
+    <dimen name="medium_text">24sp</dimen>
+    <dimen name="big_text">34sp</dimen>
+
+    // extra detail texts
+    <dimen name="extra_detail_city_text_size">@dimen/big_text</dimen>
+    <dimen name="extra_detail_lowest_temp_text_size">@dimen/big_text</dimen>
+    <dimen name="extra_detail_highest_temp_text_size">60sp</dimen>
+
+    <dimen name="extra_detail_weather_icon_width">96dp</dimen>
+    <dimen name="extra_detail_weather_icon_height">96dp</dimen>
+
+    <dimen name="recycler_view_progress_bar_width">48dp</dimen>
+    <dimen name="recycler_view_progress_bar_height">48dp</dimen>
+
+
+    <dimen name="cities_forecast_label_width">0dp</dimen>
+    <dimen name="cities_forecast_image_view_width">40dp</dimen>
+    <dimen name="cities_forecast_image_view_height">40dp</dimen>
+
+    <dimen name="cities_forecast_constraint_layout_padding_bottom">12dp</dimen>
+    <dimen name="cities_forecast_city_text_view_list_item_margin_start">32dp</dimen>
+    <dimen name="cities_forecast_city_text_view_list_item_width">0dp</dimen>
+
+
 
 </resources>
